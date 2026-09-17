@@ -1,0 +1,82 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+}
+
+.heroTitle {
+  font-size: 4rem;
+  background: linear-gradient(
+    to right,
+    var(--primary),
+    var(--secondary),
+    var(--accent)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 5s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.profileCard {
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+  perspective: 1000px;
+}
+
+.profileCard:hover {
+  transform: rotateY(10deg) rotateX(5deg);
+}
+
+.profileImg {
+  transform: translateZ(30px);
+  border: 5px solid var(--primary);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+  transition: all 0.5s ease;
+}
+
+.profileCard:hover .profileImg {
+  box-shadow: 0 0 50px rgba(139, 92, 246, 0.8);
+}
+
+.fadeIn {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,78 @@
+.navbar {
+  transition: all 0.3s;
+  padding: 20px 0;
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(10px);
+}
+
+.navbarScrolled {
+  background: rgba(15, 23, 42, 0.95) !important;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  padding: 10px 0;
+}
+
+.navLink {
+  position: relative;
+  margin: 0 10px;
+  color: var(--light) !important;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(to right, var(--primary), var(--accent));
+  transition: width 0.3s;
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+.brand {
+  background: linear-gradient(
+    90deg,
+    var(--primary),
+    var(--accent),
+    var(--primary)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: brandGradient 4s linear infinite;
+  transition: transform 0.3s;
+}
+
+.brand:hover {
+  transform: scale(1.05);
+}
+
+.brandIcon {
+  display: inline-block;
+  color: var(--primary);
+  -webkit-text-fill-color: var(--primary);
+  animation: brandIconSpin 6s linear infinite;
+}
+
+@keyframes brandGradient {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes brandIconSpin {
+  0%,
+  85% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
