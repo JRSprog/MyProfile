@@ -8,8 +8,8 @@ export function Skills() {
       <div className="container">
         <h2 className="section-title">Technical Skills</h2>
         <div className="row">
-          {skills.map((skill) => (
-            <SkillBar skill={skill} key={skill.name} />
+          {skills.map((skill, index) => (
+            <SkillBar skill={skill} index={index} key={skill.name} />
           ))}
         </div>
       </div>

@@ -19,6 +19,13 @@ export function Hero() {
       <div className={`container ${styles.heroContent}`}>
         <div className="row align-items-center">
           <div className="col-lg-6">
+            <div
+              className={`${styles.availableBadge} ${styles.fadeIn}`}
+              style={{ animationDelay: "0s" }}
+            >
+              <span className={styles.pulseDot}></span>
+              Available for new opportunities
+            </div>
             <h3
               className={`text-primary mb-3 ${styles.fadeIn}`}
               style={{ animationDelay: "0.2s" }}
@@ -32,7 +39,7 @@ export function Hero() {
               Jeffrey
             </h1>
             <h4
-              className={`mb-4 text-gray ${styles.fadeIn}`}
+              className={`mb-4 ${styles.subtitle} ${styles.fadeIn}`}
               style={{ animationDelay: "0.6s" }}
             >
               Inspiring Full Stack Web Developer
@@ -72,17 +79,32 @@ export function Hero() {
             <div
               className={`text-center mt-5 mt-lg-0 ${styles.profileCard}`}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/fr.jpg"
-                alt="Profile"
-                className={`img-fluid rounded-circle ${styles.profileImg}`}
-                style={{ maxWidth: "350px" }}
-              />
+              <div className={styles.profileRing}>
+                <div className={styles.profileImgWrap}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/images/fr.jpg"
+                    alt="Profile"
+                    className={styles.profileImg}
+                  />
+                  <div className={styles.profileVignette}></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <a
+        href="#about"
+        className={styles.scrollIndicator}
+        aria-label="Scroll to About section"
+        onClick={(e) => {
+          e.preventDefault();
+          scrollToAnchor("#about");
+        }}
+      >
+        <i className="fas fa-chevron-down"></i>
+      </a>
     </section>
   );
 }

@@ -56,8 +56,13 @@ export function Projects() {
               className={styles.carouselTrack}
               style={{ transform: `translateX(-${activeIndex * 100}%)` }}
             >
-              {projects.map((project) => (
-                <div className={styles.carouselSlide} key={project.id}>
+              {projects.map((project, index) => (
+                <div
+                  className={`${styles.carouselSlide} ${
+                    index === activeIndex ? styles.carouselSlideActive : ""
+                  }`}
+                  key={project.id}
+                >
                   <ProjectCard
                     project={project}
                     onViewDetails={setSelectedProject}
