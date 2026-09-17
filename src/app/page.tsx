@@ -1,5 +1,6 @@
 import { BackgroundAnimation } from "@/components/BackgroundAnimation/BackgroundAnimation";
 import { BackToTop } from "@/components/BackToTop/BackToTop";
+import { ScrollProgress } from "@/components/ScrollProgress/ScrollProgress";
 import { Navbar } from "@/components/Navbar/Navbar";
 import { Hero } from "@/components/Hero/Hero";
 import { About } from "@/components/About/About";
@@ -12,6 +13,7 @@ export default function Home() {
   return (
     <>
       <BackgroundAnimation />
+      <ScrollProgress />
       <BackToTop />
       <Navbar />
       <Hero />

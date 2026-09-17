@@ -13,10 +13,21 @@
   transition: transform 0.8s;
   border-radius: 10px;
   transform: translateZ(20px);
+  animation: kenBurns 10s ease-in-out infinite alternate;
 }
 
 .projectCard:hover .projectImg {
-  transform: translateZ(30px) scale(1.05);
+  animation-play-state: paused;
+  transform: translateZ(30px) scale(1.08);
+}
+
+@keyframes kenBurns {
+  from {
+    transform: translateZ(20px) scale(1);
+  }
+  to {
+    transform: translateZ(20px) scale(1.06);
+  }
 }
 
 .carousel {
@@ -41,6 +52,40 @@
   padding: 8px 4px 24px;
 }
 
+.carouselSlideActive :global(.card-title),
+.carouselSlideActive :global(.card-text),
+.carouselSlideActive :global(.badge),
+.carouselSlideActive :global(.btn) {
+  animation: slideContentIn 0.6s ease-out both;
+}
+
+.carouselSlideActive :global(.card-title) {
+  animation-delay: 0.1s;
+}
+
+.carouselSlideActive :global(.card-text) {
+  animation-delay: 0.2s;
+}
+
+.carouselSlideActive :global(.badge) {
+  animation-delay: 0.05s;
+}
+
+.carouselSlideActive :global(.btn) {
+  animation-delay: 0.3s;
+}
+
+@keyframes slideContentIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .carouselControl {
   flex: 0 0 auto;
   width: 44px;
@@ -52,13 +97,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.3s, transform 0.3s;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
   z-index: 2;
+  animation: controlPulse 2.5s ease-in-out infinite;
 }
 
 .carouselControl:hover {
   background: var(--primary);
-  transform: scale(1.1);
+  transform: scale(1.15);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+  animation-play-state: paused;
+}
+
+.carouselControl:active {
+  transform: scale(0.9);
+}
+
+@keyframes controlPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(139, 92, 246, 0);
+  }
 }
 
 .carouselDots {
@@ -85,4 +147,15 @@
 .dotActive {
   background: linear-gradient(to right, var(--primary), var(--accent));
   transform: scale(1.3);
+  animation: dotPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(236, 72, 153, 0);
+  }
 }

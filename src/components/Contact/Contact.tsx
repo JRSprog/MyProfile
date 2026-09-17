@@ -2,16 +2,21 @@
 
 import { FormEvent, useState } from "react";
 import { RevealSection } from "@/components/RevealSection/RevealSection";
+import styles from "./Contact.module.css";
 
 type Status = "idle" | "sending" | "success" | "error";
 
 export function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<Status>("idle");
+  const [showPlane, setShowPlane] = useState(false);
+  const [flightKey, setFlightKey] = useState(0);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("sending");
+    setShowPlane(true);
+    setFlightKey((key) => key + 1);
 
     try {
       const res = await fetch("/api/contact", {
@@ -130,13 +135,22 @@ export function Contact() {
                     required
                   ></textarea>
                 </div>
-                <button
-                  type="submit"
-                  className="btn btn-primary btn-3d"
-                  disabled={status === "sending"}
-                >
-                  {status === "sending" ? "Sending..." : "Send Message"}
-                </button>
+                <div className={styles.submitWrap}>
+                  <button
+                    type="submit"
+                    className="btn btn-primary btn-3d"
+                    disabled={status === "sending"}
+                  >
+                    {status === "sending" ? "Sending..." : "Send Message"}
+                  </button>
+                  {showPlane && (
+                    <i
+                      key={flightKey}
+                      className={`fas fa-paper-plane ${styles.flyingPlane}`}
+                      onAnimationEnd={() => setShowPlane(false)}
+                    ></i>
+                  )}
+                </div>
                 {status === "success" && (
                   <p className="text-success mt-3 mb-0">
                     Message sent! I&apos;ll get back to you soon.

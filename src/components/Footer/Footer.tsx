@@ -12,7 +12,7 @@ const SOCIAL_LINKS = [
     label: "Facebook",
   },
   {
-    href: "mailto:salabaojeffrey024@gamil.com",
+    href: "mailto:salabaojeffrey024@gmail.com",
     icon: "fab fa-google",
     label: "Email",
   },

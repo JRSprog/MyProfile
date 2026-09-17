@@ -9,6 +9,28 @@
   --lighter: #ffffff;
   --gray: #94a3b8;
   --card-bg: rgba(30, 41, 59, 0.8);
+
+  /* Align Bootstrap's default (blue) theme tokens with the site's
+     purple/pink brand so bg-primary/text-primary/badges/etc. match
+     the custom gradient elements instead of clashing with them. */
+  --bs-primary: var(--primary);
+  --bs-primary-rgb: 139, 92, 246;
+  --bs-link-color: var(--primary);
+  --bs-link-color-rgb: 139, 92, 246;
+  --bs-link-hover-color: var(--accent);
+  --bs-link-hover-color-rgb: 236, 72, 153;
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--primary);
+  --bs-btn-border-color: var(--primary);
+  --bs-btn-hover-bg: var(--primary-dark);
+  --bs-btn-hover-border-color: var(--primary-dark);
+  --bs-btn-active-bg: var(--primary-dark);
+  --bs-btn-active-border-color: var(--primary-dark);
+  --bs-btn-disabled-bg: var(--primary);
+  --bs-btn-disabled-border-color: var(--primary);
+  --bs-btn-focus-shadow-rgb: 139, 92, 246;
 }
 
 * {

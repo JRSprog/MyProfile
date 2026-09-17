@@ -13,16 +13,23 @@
 
 .heroTitle {
   font-size: 4rem;
+  letter-spacing: 0.5px;
   background: linear-gradient(
     to right,
     var(--primary),
     var(--secondary),
     var(--accent)
   );
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   animation: gradientShift 5s ease infinite;
+}
+
+.subtitle {
+  color: var(--gray);
+  font-weight: 500;
 }
 
 @keyframes gradientShift {
@@ -49,21 +56,137 @@
   transform-style: preserve-3d;
   transition: transform 0.8s;
   perspective: 1000px;
+  display: inline-block;
 }
 
 .profileCard:hover {
   transform: rotateY(10deg) rotateX(5deg);
 }
 
-.profileImg {
-  transform: translateZ(30px);
-  border: 5px solid var(--primary);
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
-  transition: all 0.5s ease;
+.profileRing {
+  position: relative;
+  display: inline-block;
+  border-radius: 50%;
+  padding: 8px;
 }
 
-.profileCard:hover .profileImg {
-  box-shadow: 0 0 50px rgba(139, 92, 246, 0.8);
+.profileRing::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    var(--primary),
+    var(--secondary),
+    var(--accent),
+    var(--primary)
+  );
+  animation: ringSpin 8s linear infinite;
+  z-index: -1;
+  opacity: 0.9;
+}
+
+@keyframes ringSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.profileImgWrap {
+  position: relative;
+  width: min(320px, 70vw);
+  height: min(320px, 70vw);
+  border-radius: 50%;
+  overflow: hidden;
+  transform: translateZ(30px);
+  border: 6px solid var(--darker);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.5), 0 20px 40px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.5s ease;
+}
+
+.profileCard:hover .profileImgWrap {
+  box-shadow: 0 0 50px rgba(139, 92, 246, 0.8), 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.profileImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+}
+
+/* Softens the photo's flat light background into the dark theme
+   instead of a harsh cutout edge. */
+.profileVignette {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: inset 0 0 40px 18px rgba(2, 6, 23, 0.65);
+}
+
+.availableBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: var(--light);
+  font-size: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.pulseDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 rgba(34, 197, 94, 0.6);
+  animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+.scrollIndicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  color: var(--light);
+  font-size: 1.25rem;
+  opacity: 0.7;
+  animation: bounce 2s infinite;
+  transition: opacity 0.3s, color 0.3s;
+}
+
+.scrollIndicator:hover {
+  opacity: 1;
+  color: var(--primary);
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(8px);
+  }
 }
 
 .fadeIn {
